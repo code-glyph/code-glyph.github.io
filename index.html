@@ -453,9 +453,10 @@
 				<button type="button" data-filter="featured" aria-pressed="true">Featured</button>
 				<button type="button" data-filter="systems" aria-pressed="false">Systems</button>
 				<button type="button" data-filter="genai" aria-pressed="false">Gen AI</button>
+				<button type="button" data-filter="fullstack" aria-pressed="false">Full Stack</button>
 			</div>
 			<div class="projects">
-				<article class="card featured" data-category="genai" data-featured>
+				<article class="card featured" data-category="fullstack genai" data-featured>
 					<h3>RUSK</h3>
 					<p>Automation system that uses an AI agent to learn tasks in a live UI, saves them as reusable workflows, and replays them without the model.</p>
 					<ul class="chips">
@@ -466,10 +467,10 @@
 					</div>
 				</article>
 
-				<article class="card featured" data-category="genai" data-featured>
+				<article class="card featured" data-category="fullstack genai" data-featured>
 					<span class="winner-label">1st place · c0mpiled-6</span>
 					<h3>DoomScholar</h3>
-					<p>Anti-doomscrolling iOS app that detects passive scrolling and interrupts with AI-generated quizzes from LMS material. 1st place at c0mpiled-6.</p>
+					<p>Full-stack mobile app with a SwiftUI/WKWebView client and a separate FastAPI backend that generates quizzes with OpenAI. 1st place at c0mpiled-6.</p>
 					<ul class="chips">
 						<li>SwiftUI</li><li>WKWebView</li><li>FastAPI</li><li>OpenAI</li>
 					</ul>
@@ -479,14 +480,22 @@
 					</div>
 				</article>
 
-				<article class="card" data-category="genai" hidden>
+				<article class="card" data-category="fullstack genai" hidden>
 					<h3>TutorTrace</h3>
-					<p>Offline-first Canvas LMS study app with AI flashcard generation from course content, a gamification engine with XP and streaks, Canvas OAuth2, and non-blocking full-text search via a Web Worker.</p>
+					<p>Full-stack web app with a React/TypeScript frontend, a course-plan-service and proxy layer, Canvas OAuth2, and local IndexedDB storage.</p>
 					<ul class="chips">
 						<li>React</li><li>TypeScript</li><li>Dexie.js</li><li>IndexedDB</li><li>OAuth2</li>
 					</ul>
 					<div class="links">
 						<a href="https://github.com/aakash-wagle/tutortrace/" target="_blank" rel="noopener noreferrer">github/aakash-wagle/tutortrace</a>
+					</div>
+				</article>
+
+				<article class="card" data-category="fullstack genai" hidden>
+					<h3>Matcha</h3>
+					<p>A recruiter types a brief. An LLM turns it into filters. Postgres finds the people.</p>
+					<div class="links">
+						<a href="https://github.com/durvabdev/matcha" target="_blank" rel="noopener noreferrer">github/durvabdev/matcha</a>
 					</div>
 				</article>
 
@@ -511,7 +520,7 @@
 
 				<article class="card" data-category="systems" hidden>
 					<h3>Linearizable KV store</h3>
-					<p>Fault-tolerant key-value store using Raft consensus. 65K reads/sec (p99 1.0ms) and 5.8K writes/sec (p99 11.5ms), with leader failover and crash-safe durability via append-only WAL and periodic snapshots.</p>
+					<p>Fault-tolerant key-value store using Raft consensus, with leader failover and crash-safe durability via append-only WAL and periodic snapshots.</p>
 					<ul class="chips">
 						<li>Go</li><li>C++</li><li>RPC</li>
 					</ul>
@@ -611,7 +620,7 @@
 				cards.forEach(function (card) {
 					var show = filter === "featured"
 						? card.hasAttribute("data-featured")
-						: card.getAttribute("data-category") === filter;
+						: card.getAttribute("data-category").split(/\s+/).includes(filter);
 					card.hidden = !show;
 				});
 			}
